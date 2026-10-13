@@ -15,7 +15,7 @@ export const Route = createFileRoute("/how-it-works")({
   component: () => (
     <ProsePage title="How it works" intro="A transparent, step-by-step look at the AI KidneyGuard screening workflow.">
       <h2>1. Create a secure account</h2>
-      <p>Your health records are tied to your account and visible only to you. Account sign-up is coming in the next release.</p>
+      <p>Your health records are tied to your account and visible only to you. Sign in with Google or email — you need an account to run and save assessments.</p>
       <h2>2. Enter the information you have</h2>
       <p>Age, blood pressure, diabetes and hypertension history, and lab values such as serum creatinine, eGFR and urine albumin-to-creatinine ratio (UACR). Missing values are never replaced with assumed numbers.</p>
       <h2>3. Review the model output</h2>
