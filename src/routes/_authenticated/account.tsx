@@ -48,19 +48,19 @@ function Account() {
   async function saveProfile(e: React.FormEvent) {
     e.preventDefault();
     const by = f.birth_year ? Number(f.birth_year) : null;
-    if (by !== null && (by < 1900 || by > 2010)) return toast.error("Enter a birth year between 1900 and 2010.");
+    if (by !== null && (by < 1900 || by > 2010)) { toast.error("Enter a birth year between 1900 and 2010."); return; }
     const r1 = await supabase.from("profiles").upsert({ id: user.id, full_name: f.full_name.trim().slice(0, 100) || null, birth_year: by });
     const r2 = await supabase.from("health_profiles").upsert({
       user_id: user.id, hypertension_history: fromTri(f.htn), diabetes_history: fromTri(f.dm), family_history_ckd: fromTri(f.fam),
     }, { onConflict: "user_id" });
-    if (r1.error || r2.error) return toast.error("Could not save. Please try again.");
+    if (r1.error || r2.error) { toast.error("Could not save. Please try again."); return; }
     toast.success("Profile saved.");
     qc.invalidateQueries({ queryKey: ["account", user.id] });
   }
 
   async function del(id: string) {
     const { error } = await supabase.from("risk_assessments").delete().eq("id", id);
-    if (error) return toast.error("Could not delete.");
+    if (error) { toast.error("Could not delete."); return; }
     qc.invalidateQueries({ queryKey: ["account", user.id] });
   }
 

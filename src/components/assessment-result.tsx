@@ -24,7 +24,7 @@ export function SeekCareNow() {
 }
 
 export function AssessmentResultView({ result, onSave, saveLabel, onRestart }: {
-  result: Res; onSave?: () => void; saveLabel?: string; onRestart: () => void;
+  result: Res; onSave?: (() => void) | undefined; saveLabel?: string; onRestart: () => void;
 }) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   useEffect(() => { headingRef.current?.focus(); }, [result]);
