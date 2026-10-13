@@ -75,14 +75,14 @@ function AssessmentPage() {
 
   const field = (k: keyof Form) =>
     `mt-1 w-full rounded-lg border bg-card px-3 py-2.5 text-base outline-none focus:ring-2 focus:ring-ring ${errors[k] ? "border-destructive" : "border-input"}`;
-  const Err = ({ k }: { k: keyof Form }) => errors[k] ? <p id={`${k}-err`} className="mt-1 text-sm text-destructive">{errors[k]}</p> : null;
+  const Err = (k: keyof Form) => errors[k] ? <p id={`${k}-err`} className="mt-1 text-sm text-destructive">{errors[k]}</p> : null;
   const Field = ({ k, label, hint, unit, step }: { k: keyof Form; label: string; hint: string; unit: string; step: string }) => (
     <div>
       <label htmlFor={k} className="text-sm font-medium">{label} <span className="text-muted-foreground">({unit})</span></label>
       <input id={k} inputMode="decimal" type="number" step={step} value={form[k]} onChange={set(k)} className={field(k)}
         aria-invalid={!!errors[k]} aria-describedby={`${k}-hint${errors[k] ? ` ${k}-err` : ""}`} />
       <p id={`${k}-hint`} className="mt-1 text-sm text-muted-foreground">{hint}</p>
-      <Err k={k} />
+      {Err(k)}
     </div>
   );
   const YesNo = ({ k, label }: { k: keyof Form; label: string }) => (
@@ -91,7 +91,7 @@ function AssessmentPage() {
       <select id={k} value={form[k]} onChange={set(k)} className={field(k)} aria-invalid={!!errors[k]}>
         <option value="">Choose…</option><option value="yes">Yes</option><option value="no">No</option>
       </select>
-      <Err k={k} />
+      {Err(k)}
     </div>
   );
 
@@ -113,15 +113,15 @@ function AssessmentPage() {
             <form onSubmit={submit} noValidate className="mt-8 space-y-8">
               <fieldset className="grid gap-5 rounded-2xl border border-border bg-card p-6 sm:grid-cols-2">
                 <legend className="px-2 font-display font-semibold">About you</legend>
-                <Field k="age" label="Age" unit="years" step="1" hint="18 or over" />
-                <Field k="bp" label="Diastolic blood pressure" unit="mmHg" step="1" hint="The lower number, e.g. 80 in 120/80" />
-                <YesNo k="htn" label="Have you been told you have high blood pressure?" />
-                <YesNo k="dm" label="Have you been told you have diabetes?" />
+                {Field({ k: "age", label: "Age", unit: "years", step: "1", hint: "18 or over" })}
+                {Field({ k: "bp", label: "Diastolic blood pressure", unit: "mmHg", step: "1", hint: "The lower number, e.g. 80 in 120/80" })}
+                {YesNo({ k: "htn", label: "Have you been told you have high blood pressure?" })}
+                {YesNo({ k: "dm", label: "Have you been told you have diabetes?" })}
               </fieldset>
               <fieldset className="grid gap-5 rounded-2xl border border-border bg-card p-6 sm:grid-cols-2">
                 <legend className="px-2 font-display font-semibold">Lab results</legend>
-                <Field k="sc" label="Serum creatinine" unit="mg/dL" step="0.01" hint="Blood test. If in µmol/L, divide by 88.4" />
-                <Field k="hemo" label="Hemoglobin" unit="g/dL" step="0.1" hint="Blood test (complete blood count)" />
+                {Field({ k: "sc", label: "Serum creatinine", unit: "mg/dL", step: "0.01", hint: "Blood test. If in µmol/L, divide by 88.4" })}
+                {Field({ k: "hemo", label: "Hemoglobin", unit: "g/dL", step: "0.1", hint: "Blood test (complete blood count)" })}
                 <div>
                   <label htmlFor="al" className="text-sm font-medium">Urine albumin dipstick</label>
                   <select id="al" value={form.al} onChange={set("al")} className={field("al")}>
