@@ -5,4 +5,5 @@
 - [ ] Non-diagnostic guidance for flagged/unavailable results + when to contact a professional
 - [ ] Accessible guidance: headings, readable text, screen-reader announcements
 - [ ] Auth (email + Google) + health profile, save assessments; user-friendly; test end to end
+- [ ] Screen-reader-announced sign-in guidance at the results gate
 - [ ] Later: dashboard/charts, measurements CRUD, AI assistant, education center, export/delete

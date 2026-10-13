@@ -95,6 +95,12 @@ function AuthPage() {
           {mode === "in" ? "Welcome back" : mode === "up" ? "Create your free account" : "Reset your password"}
         </h1>
         <p className="mt-2 text-muted-foreground">Sign in to run an assessment and keep your results private to you.</p>
+        {redirect && (
+          <div role="status" aria-live="polite" className="mt-5 rounded-xl border border-primary/30 bg-accent p-4 text-base text-accent-foreground">
+            <h2 className="font-display text-base font-semibold">Sign in to see your results</h2>
+            <p className="mt-1">Your results are personal health information, so we only show them in a private account. Sign in or create a free account, and you'll come straight back to the assessment.</p>
+          </div>
+        )}
 
         {mode !== "forgot" && (
           <>

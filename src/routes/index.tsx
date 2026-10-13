@@ -62,7 +62,7 @@ function Index() {
             Explore kidney disease risk factors, record important health measurements, and gain educational insights with an AI-assisted health screening platform.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/how-it-works" className="rounded-lg bg-primary px-5 py-3 font-medium text-primary-foreground shadow-[var(--shadow-card)] transition hover:bg-primary/90">
+            <Link to="/assessment" className="rounded-lg bg-primary px-5 py-3 font-medium text-primary-foreground shadow-[var(--shadow-card)] transition hover:bg-primary/90">
               Start Risk Assessment
             </Link>
             <Link to="/how-it-works" className="rounded-lg border border-border bg-card px-5 py-3 font-medium text-foreground transition hover:bg-muted">
