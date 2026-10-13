@@ -14,8 +14,9 @@ function cleanInput(input: unknown): RawInput {
   return out;
 }
 
-/** Public: guests can run an assessment. Nothing is stored. */
+/** Signed-in only. Nothing is stored until the user saves. */
 export const predictAssessment = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => cleanInput(input))
   .handler(async ({ data }): Promise<AssessmentResult | { status: "error"; modelVersion: string }> => {
     try {
