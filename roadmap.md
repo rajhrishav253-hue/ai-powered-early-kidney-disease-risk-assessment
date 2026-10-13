@@ -3,5 +3,6 @@
 - [ ] Guest assessment flow + results screen (real trained model, clean form each time)
 - [ ] Input validation, confidence indicator, safe fallback for inference
 - [ ] Non-diagnostic guidance for flagged/unavailable results + when to contact a professional
+- [ ] Accessible guidance: headings, readable text, screen-reader announcements
 - [ ] Auth (email + Google) + health profile, save assessment for signed-in users
 - [ ] Later: dashboard/charts, measurements CRUD, AI assistant, education center, export/delete
