@@ -19,7 +19,7 @@ describe("runAssessment", () => {
     expect(r.status === "ok" && r.classification).toBe("pattern_resembles_ckd");
   });
   it("gives low confidence when values are outside training range", () => {
-    const r = runAssessment({ ...base, sc: 24 });
+    const r = runAssessment({ ...base, age: 105 });
     expect(r.status === "ok" && r.confidence).toBe("low");
   });
 });
