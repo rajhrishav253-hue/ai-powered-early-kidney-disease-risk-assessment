@@ -14,7 +14,111 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      health_profiles: {
+        Row: {
+          created_at: string
+          diabetes_history: boolean | null
+          family_history_ckd: boolean | null
+          hypertension_history: boolean | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          diabetes_history?: boolean | null
+          family_history_ckd?: boolean | null
+          hypertension_history?: boolean | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          diabetes_history?: boolean | null
+          family_history_ckd?: boolean | null
+          hypertension_history?: boolean | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          birth_year: number | null
+          created_at: string
+          full_name: string | null
+          id: string
+          preferred_units: string
+          updated_at: string
+        }
+        Insert: {
+          birth_year?: number | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          preferred_units?: string
+          updated_at?: string
+        }
+        Update: {
+          birth_year?: number | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          preferred_units?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      risk_assessments: {
+        Row: {
+          assessment_date: string
+          confidence: string | null
+          created_at: string
+          data_completeness: number
+          id: string
+          input_snapshot: Json
+          model_output: string
+          model_output_type: string
+          model_version: string
+          probability: number | null
+          result_explanation: Json | null
+          risk_category: string | null
+          user_id: string
+        }
+        Insert: {
+          assessment_date?: string
+          confidence?: string | null
+          created_at?: string
+          data_completeness: number
+          id?: string
+          input_snapshot: Json
+          model_output: string
+          model_output_type?: string
+          model_version: string
+          probability?: number | null
+          result_explanation?: Json | null
+          risk_category?: string | null
+          user_id: string
+        }
+        Update: {
+          assessment_date?: string
+          confidence?: string | null
+          created_at?: string
+          data_completeness?: number
+          id?: string
+          input_snapshot?: Json
+          model_output?: string
+          model_output_type?: string
+          model_version?: string
+          probability?: number | null
+          result_explanation?: Json | null
+          risk_category?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
