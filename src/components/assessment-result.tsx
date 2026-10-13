@@ -87,7 +87,7 @@ export function AssessmentResultView({ result, onSave, saveLabel, onRestart }: {
               </li>
             ))}
           </ul>
-          <h4 className="mt-5 text-base font-semibold">Why certainty is {result.confidence}</h4>
+          <h4 className="mt-5 text-base font-semibold">About this certainty level</h4>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-base text-muted-foreground">
             {result.confidenceReasons.map((r) => <li key={r}>{r}</li>)}
           </ul>
