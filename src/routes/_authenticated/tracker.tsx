@@ -117,15 +117,16 @@ function Tracker() {
           <p className="text-sm text-muted-foreground">Fill in only what you have.</p>
           <div className="grid gap-4 sm:grid-cols-3">
             <label className="block text-sm font-medium">Date<input type="date" max={today()} className={inp} value={f.date} onChange={(e) => setF({ ...f, date: e.target.value })} /></label>
-            <label className="block text-sm font-medium">Systolic BP (mmHg)<input type="number" className={inp} value={f.sys} onChange={(e) => setF({ ...f, sys: e.target.value })} placeholder="e.g. 120" /></label>
-            <label className="block text-sm font-medium">Diastolic BP (mmHg)<input type="number" className={inp} value={f.dia} onChange={(e) => setF({ ...f, dia: e.target.value })} placeholder="e.g. 80" /></label>
-            <label className="block text-sm font-medium">Serum creatinine (mg/dL)<input type="number" step="0.01" className={inp} value={f.sc} onChange={(e) => setF({ ...f, sc: e.target.value })} /></label>
-            <label className="block text-sm font-medium">Hemoglobin (g/dL)<input type="number" step="0.1" className={inp} value={f.hemo} onChange={(e) => setF({ ...f, hemo: e.target.value })} /></label>
+            <label className="block text-sm font-medium">Systolic BP (mmHg)<input type="number" className={inp} value={f.sys} onChange={(e) => setF({ ...f, sys: e.target.value })} placeholder="e.g. 120" /><span className="mt-1 block text-xs font-normal text-muted-foreground">The higher (first) number of a reading like 120/80. Blood pressure moves through the day — track the trend, not one reading.</span></label>
+            <label className="block text-sm font-medium">Diastolic BP (mmHg)<input type="number" className={inp} value={f.dia} onChange={(e) => setF({ ...f, dia: e.target.value })} placeholder="e.g. 80" /><span className="mt-1 block text-xs font-normal text-muted-foreground">The lower (second) number of a reading like 120/80. Compare against your own past readings, not a single value.</span></label>
+            <label className="block text-sm font-medium">Serum creatinine (mg/dL)<input type="number" step="0.01" className={inp} value={f.sc} onChange={(e) => setF({ ...f, sc: e.target.value })} /><span className="mt-1 block text-xs font-normal text-muted-foreground">A waste-product blood test linked to how well kidneys filter. Typical values differ by age, sex and muscle mass — compare with the reference range on your lab report.</span></label>
+            <label className="block text-sm font-medium">Hemoglobin (g/dL)<input type="number" step="0.1" className={inp} value={f.hemo} onChange={(e) => setF({ ...f, hemo: e.target.value })} /><span className="mt-1 block text-xs font-normal text-muted-foreground">Oxygen-carrying protein in your red blood cells, from a complete blood count. Reference ranges differ by age and sex — your lab report shows the range your lab uses.</span></label>
             <label className="block text-sm font-medium">Urine albumin dipstick
               <select className={inp} value={f.al} onChange={(e) => setF({ ...f, al: e.target.value })}>
                 <option value="">Not measured</option><option value="0">Negative (0)</option><option value="1">Trace / 1+</option>
                 <option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option>
               </select>
+              <span className="mt-1 block text-xs font-normal text-muted-foreground">Checks for protein in a urine sample. A single higher result can be temporary (exercise, fever, dehydration); repeated results are worth discussing with a healthcare professional.</span>
             </label>
           </div>
           <label className="block text-sm font-medium">Notes (optional)<input className={inp} maxLength={300} value={f.notes} onChange={(e) => setF({ ...f, notes: e.target.value })} /></label>

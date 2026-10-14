@@ -85,12 +85,14 @@ function AssessmentPage() {
       {Err(k)}
     </div>
   );
-  const YesNo = ({ k, label }: { k: keyof Form; label: string }) => (
+  const YesNo = ({ k, label, hint }: { k: keyof Form; label: string; hint?: string }) => (
     <div>
       <label htmlFor={k} className="text-sm font-medium">{label}</label>
-      <select id={k} value={form[k]} onChange={set(k)} className={field(k)} aria-invalid={!!errors[k]}>
+      <select id={k} value={form[k]} onChange={set(k)} className={field(k)} aria-invalid={!!errors[k]}
+        aria-describedby={`${k}-hint${errors[k] ? ` ${k}-err` : ""}`}>
         <option value="">Choose…</option><option value="yes">Yes</option><option value="no">No</option>
       </select>
+      {hint && <p id={`${k}-hint`} className="mt-1 text-sm text-muted-foreground">{hint}</p>}
       {Err(k)}
     </div>
   );
@@ -113,23 +115,23 @@ function AssessmentPage() {
             <form onSubmit={submit} noValidate className="mt-8 space-y-8">
               <fieldset className="grid gap-5 rounded-2xl border border-border bg-card p-6 sm:grid-cols-2">
                 <legend className="px-2 font-display font-semibold">About you</legend>
-                {Field({ k: "age", label: "Age", unit: "years", step: "1", hint: "18 or over" })}
-                {Field({ k: "bp", label: "Diastolic blood pressure", unit: "mmHg", step: "1", hint: "The lower number, e.g. 80 in 120/80" })}
-                {YesNo({ k: "htn", label: "Have you been told you have high blood pressure?" })}
-                {YesNo({ k: "dm", label: "Have you been told you have diabetes?" })}
+                {Field({ k: "age", label: "Age", unit: "years", step: "1", hint: "Your age in whole years (18 or over). Age affects typical lab values but is not a diagnosis on its own." })}
+                {Field({ k: "bp", label: "Diastolic blood pressure", unit: "mmHg", step: "1", hint: "The lower number in a reading like 120/80. Blood pressure varies through the day — use a recent reading taken while seated and rested." })}
+                {YesNo({ k: "htn", label: "Have you been told you have high blood pressure?", hint: "Answer based on what a healthcare professional has told you." })}
+                {YesNo({ k: "dm", label: "Have you been told you have diabetes?", hint: "Answer based on what a healthcare professional has told you." })}
               </fieldset>
               <fieldset className="grid gap-5 rounded-2xl border border-border bg-card p-6 sm:grid-cols-2">
                 <legend className="px-2 font-display font-semibold">Lab results</legend>
-                {Field({ k: "sc", label: "Serum creatinine", unit: "mg/dL", step: "0.01", hint: "Blood test. If in µmol/L, divide by 88.4" })}
-                {Field({ k: "hemo", label: "Hemoglobin", unit: "g/dL", step: "0.1", hint: "Blood test (complete blood count)" })}
+                {Field({ k: "sc", label: "Serum creatinine", unit: "mg/dL", step: "0.01", hint: "A waste product your kidneys filter from blood. Typical values differ by age, sex and muscle mass — compare with the reference range on your lab report. If your report uses µmol/L, divide by 88.4." })}
+                {Field({ k: "hemo", label: "Hemoglobin", unit: "g/dL", step: "0.1", hint: "The oxygen-carrying protein in your blood, from a complete blood count. Typical values differ by age and sex — your lab report shows the range your lab uses." })}
                 <div>
                   <label htmlFor="al" className="text-sm font-medium">Urine albumin dipstick</label>
-                  <select id="al" value={form.al} onChange={set("al")} className={field("al")}>
+                  <select id="al" value={form.al} onChange={set("al")} className={field("al")} aria-describedby={errors.al ? "al-hint al-err" : "al-hint"}>
                     <option value="">Choose…</option>
                     <option value="0">Negative (0)</option><option value="1">Trace / 1+</option><option value="2">2+</option>
                     <option value="3">3+</option><option value="4">4+</option><option value="5">5+</option>
                   </select>
-                  <p className="mt-1 text-sm text-muted-foreground">Urine test strip result for protein/albumin</p>
+                  <p id="al-hint" className="mt-1 text-sm text-muted-foreground">A urine dipstick for protein (albumin). Negative or trace is common, and one higher reading can be temporary — exercise, fever or dehydration can affect it. Repeated results are worth discussing with a healthcare professional.</p>
                 </div>
               </fieldset>
               <button disabled={busy} className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-60">
