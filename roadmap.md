@@ -6,4 +6,6 @@
 - [x] Accessible guidance (headings, readable text, screen-reader announcements)
 - [x] Auth (email + Google) + health profile, saved assessments; tested end to end
 - [x] Screen-reader-announced sign-in guidance at the results gate
-- [ ] Later: dashboard/charts, measurements, AI assistant, education center, export/delete account
+- [x] Measurements tracking (BP + labs) with trend charts beside saved assessments
+- [x] Light/dark theme toggle
+- [ ] Later: AI assistant, education center, export/delete account

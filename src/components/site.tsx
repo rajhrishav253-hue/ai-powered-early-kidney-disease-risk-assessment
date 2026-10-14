@@ -4,6 +4,7 @@ import { ShieldPlus } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
   const { session } = useSession();
@@ -27,8 +28,10 @@ export function SiteHeader() {
           <Link to="/privacy" className="hover:text-foreground" activeProps={{ className: "text-foreground font-medium" }}>Privacy</Link>
         </nav>
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           {session ? (
             <>
+              <Link to="/tracker" className="text-sm font-medium text-foreground hover:underline">My trends</Link>
               <Link to="/account" className="text-sm font-medium text-foreground hover:underline">My account</Link>
               <button onClick={signOut} className="text-sm text-muted-foreground hover:text-foreground">Sign out</button>
             </>

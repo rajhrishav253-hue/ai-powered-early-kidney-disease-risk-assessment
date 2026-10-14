@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      health_measurements: {
+        Row: {
+          created_at: string
+          diastolic_bp: number | null
+          hemoglobin: number | null
+          id: string
+          measured_at: string
+          notes: string | null
+          serum_creatinine: number | null
+          systolic_bp: number | null
+          urine_albumin: number | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          diastolic_bp?: number | null
+          hemoglobin?: number | null
+          id?: string
+          measured_at?: string
+          notes?: string | null
+          serum_creatinine?: number | null
+          systolic_bp?: number | null
+          urine_albumin?: number | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          diastolic_bp?: number | null
+          hemoglobin?: number | null
+          id?: string
+          measured_at?: string
+          notes?: string | null
+          serum_creatinine?: number | null
+          systolic_bp?: number | null
+          urine_albumin?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       health_profiles: {
         Row: {
           created_at: string
