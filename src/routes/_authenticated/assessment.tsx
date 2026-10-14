@@ -85,12 +85,14 @@ function AssessmentPage() {
       {Err(k)}
     </div>
   );
-  const YesNo = ({ k, label }: { k: keyof Form; label: string }) => (
+  const YesNo = ({ k, label, hint }: { k: keyof Form; label: string; hint?: string }) => (
     <div>
       <label htmlFor={k} className="text-sm font-medium">{label}</label>
-      <select id={k} value={form[k]} onChange={set(k)} className={field(k)} aria-invalid={!!errors[k]}>
+      <select id={k} value={form[k]} onChange={set(k)} className={field(k)} aria-invalid={!!errors[k]}
+        aria-describedby={`${k}-hint${errors[k] ? ` ${k}-err` : ""}`}>
         <option value="">Choose…</option><option value="yes">Yes</option><option value="no">No</option>
       </select>
+      {hint && <p id={`${k}-hint`} className="mt-1 text-sm text-muted-foreground">{hint}</p>}
       {Err(k)}
     </div>
   );
