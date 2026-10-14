@@ -126,7 +126,7 @@ function AssessmentPage() {
                 {Field({ k: "hemo", label: "Hemoglobin", unit: "g/dL", step: "0.1", hint: "The oxygen-carrying protein in your blood, from a complete blood count. Typical values differ by age and sex — your lab report shows the range your lab uses." })}
                 <div>
                   <label htmlFor="al" className="text-sm font-medium">Urine albumin dipstick</label>
-                  <select id="al" value={form.al} onChange={set("al")} className={field("al")}>
+                  <select id="al" value={form.al} onChange={set("al")} className={field("al")} aria-describedby={errors.al ? "al-hint al-err" : "al-hint"}>
                     <option value="">Choose…</option>
                     <option value="0">Negative (0)</option><option value="1">Trace / 1+</option><option value="2">2+</option>
                     <option value="3">3+</option><option value="4">4+</option><option value="5">5+</option>
