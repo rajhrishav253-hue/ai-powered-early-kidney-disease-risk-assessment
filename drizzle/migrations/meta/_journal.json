@@ -8,6 +8,13 @@
       "when": 1791915514492,
       "tag": "0000_profiles_health_assessments",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791993690275,
+      "tag": "0001_health_measurements",
+      "breakpoints": true
     }
   ]
 }
