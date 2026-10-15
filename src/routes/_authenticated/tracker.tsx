@@ -139,6 +139,13 @@ function Tracker() {
           <button disabled={busy} className="rounded-lg bg-primary px-5 py-2.5 font-medium text-primary-foreground disabled:opacity-60">{busy ? "Saving…" : "Save measurement"}</button>
         </form>
 
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 rounded-xl border border-border bg-card px-4 py-3 text-xs text-muted-foreground" aria-label="Chart legend">
+          <span className="font-medium text-foreground">How to read the charts:</span>
+          <span className="inline-flex items-center gap-2"><span className="inline-block h-0.5 w-6 bg-primary" /> your recorded values</span>
+          <span className="inline-flex items-center gap-2"><span className="inline-block h-0.5 w-6 border-t-2 border-dashed border-primary" /> saved assessment (non-CKD-like pattern)</span>
+          <span className="inline-flex items-center gap-2"><span className="inline-block h-0.5 w-6 border-t-2 border-dashed border-destructive" /> saved assessment (CKD-like pattern)</span>
+        </div>
+
         <div className="grid gap-5 md:grid-cols-2">
           <Chart title="Blood pressure" unit="mmHg" lines={[{ k: "sys", name: "Systolic", color: "var(--primary)" }, { k: "dia", name: "Diastolic", color: "var(--accent-foreground)" }]} />
           <Chart title="Serum creatinine" unit="mg/dL" lines={[{ k: "sc", name: "Creatinine", color: "var(--primary)" }]} />
