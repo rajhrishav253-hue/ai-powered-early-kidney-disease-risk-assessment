@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { runAssessment, type AssessmentResult } from "@/lib/model/inference";
 
 type RawInput = Record<string, unknown>;
