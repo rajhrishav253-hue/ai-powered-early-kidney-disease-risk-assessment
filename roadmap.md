@@ -8,4 +8,5 @@
 - [x] Screen-reader-announced sign-in guidance at the results gate
 - [x] Measurements tracking (BP + labs) with trend charts beside saved assessments
 - [x] Light/dark theme toggle
+- [x] Lab report photo upload with AI extraction + review before saving
 - [ ] Later: AI assistant, education center, export/delete account

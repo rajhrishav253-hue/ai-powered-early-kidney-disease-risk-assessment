@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, ReferenceLine } from "recharts";
 import { supabase } from "@/integrations/supabase/client";
 import { PageShell } from "@/components/site";
+import { LabUpload } from "@/components/lab-upload";
 
 export const Route = createFileRoute("/_authenticated/tracker")({
   head: () => ({
@@ -111,6 +112,8 @@ function Tracker() {
           <h1 className="text-3xl font-semibold">My health trends</h1>
           <p className="mt-2 text-muted-foreground">Record your readings over time. Dashed lines on the charts mark your saved assessments. Trends are for your own tracking and are not a diagnosis — discuss changes with a healthcare professional.</p>
         </div>
+
+        <LabUpload userId={user.id} onSaved={() => qc.invalidateQueries({ queryKey: ["tracker", user.id] })} />
 
         <form onSubmit={add} className="space-y-4 rounded-2xl border border-border bg-card p-6">
           <h2 className="text-xl font-semibold">Add a measurement</h2>
