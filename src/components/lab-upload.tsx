@@ -45,7 +45,7 @@ export function LabUpload({ userId, onSaved }: { userId: string; onSaved: () => 
 
   async function save() {
     if (!rows) return;
-    const vals: Record<string, number> = {};
+    const vals: Partial<Record<ExtractedItem["maps_to"], number>> = {};
     for (const r of rows.filter((r) => r.include && r.maps_to !== "other")) {
       const f = FIELDS.find((x) => x.k === r.maps_to)!;
       const n = Number(r.v);
