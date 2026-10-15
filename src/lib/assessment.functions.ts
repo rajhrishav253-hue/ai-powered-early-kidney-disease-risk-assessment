@@ -1,5 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { runAssessment, type AssessmentResult } from "@/lib/model/inference";
 
 type RawInput = Record<string, unknown>;
@@ -14,9 +13,8 @@ function cleanInput(input: unknown): RawInput {
   return out;
 }
 
-/** Signed-in only. Nothing is stored until the user saves. */
+/** Public demo prediction: calculate an educational estimate without requiring an account. Nothing is stored. */
 export const predictAssessment = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => cleanInput(input))
   .handler(async ({ data }): Promise<AssessmentResult | { status: "error"; modelVersion: string }> => {
     try {
