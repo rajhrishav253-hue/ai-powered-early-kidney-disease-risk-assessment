@@ -95,7 +95,10 @@ function Tracker() {
                 <XAxis dataKey="t" type="number" scale="time" domain={["dataMin", "dataMax"]} tickFormatter={(t) => new Date(t).toLocaleDateString()} stroke="var(--muted-foreground)" fontSize={12} />
                 <YAxis stroke="var(--muted-foreground)" fontSize={12} width={40} />
                 <Tooltip labelFormatter={(t) => new Date(t as number).toLocaleDateString()} contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", color: "var(--foreground)" }} />
-                {assessTimes.map((a, i) => <ReferenceLine key={i} x={a.t} stroke={a.flag ? "var(--destructive)" : "var(--primary)"} strokeDasharray="4 4" />)}
+                {assessTimes.map((a, i) => (
+                  <ReferenceLine key={i} x={a.t} stroke={a.flag ? "var(--destructive)" : "var(--primary)"} strokeDasharray="4 4"
+                    label={{ value: a.flag ? "assessment ⚑" : "assessment", position: "top", fontSize: 10, fill: a.flag ? "var(--destructive)" : "var(--primary)" }} />
+                ))}
                 {lines.map((l) => <Line key={l.k} dataKey={l.k} name={l.name} stroke={l.color} strokeWidth={2} dot connectNulls />)}
               </LineChart>
             </ResponsiveContainer>
