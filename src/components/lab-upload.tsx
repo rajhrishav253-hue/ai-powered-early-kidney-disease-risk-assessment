@@ -58,8 +58,8 @@ export function LabUpload({ userId, onSaved }: { userId: string; onSaved: () => 
     setBusy(true);
     const { error } = await supabase.from("health_measurements").insert({
       user_id: userId, measured_at: new Date(date + "T12:00:00").toISOString(),
-      systolic_bp: vals.systolic_bp ?? null, diastolic_bp: vals.diastolic_bp ?? null, serum_creatinine: vals.serum_creatinine ?? null,
-      hemoglobin: vals.hemoglobin ?? null, urine_albumin: vals.urine_albumin ?? null, notes: "From uploaded lab report",
+      systolic_bp: vals["systolic_bp"] ?? null, diastolic_bp: vals["diastolic_bp"] ?? null, serum_creatinine: vals["serum_creatinine"] ?? null,
+      hemoglobin: vals["hemoglobin"] ?? null, urine_albumin: vals["urine_albumin"] ?? null, notes: "From uploaded lab report",
     });
     setBusy(false);
     if (error) { toast.error("Could not save. Please try again."); return; }
