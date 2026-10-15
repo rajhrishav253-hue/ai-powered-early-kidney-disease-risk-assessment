@@ -1,18 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { ShieldPlus } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
-import { supabase } from "@/integrations/supabase/client";
-import { useSession } from "@/hooks/use-session";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
-  const { session } = useSession();
-  const navigate = useNavigate();
-  async function signOut() {
-    await supabase.auth.signOut();
-    navigate({ to: "/auth", replace: true });
-  }
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
@@ -29,17 +20,8 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          {session ? (
-            <>
-              <Link to="/tracker" className="text-sm font-medium text-foreground hover:underline">My trends</Link>
-              <Link to="/account" className="text-sm font-medium text-foreground hover:underline">My account</Link>
-              <button onClick={signOut} className="text-sm text-muted-foreground hover:text-foreground">Sign out</button>
-            </>
-          ) : (
-            <Link to="/auth" className="text-sm font-medium text-foreground hover:underline">Sign in</Link>
-          )}
-          <Link to="/assessment" className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">
-            Start Risk Assessment
+          <Link to="/how-it-works" className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">
+            Explore
           </Link>
         </div>
       </div>
