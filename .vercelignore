@@ -1,0 +1,13 @@
+node_modules
+.git
+.vercel
+dist
+build
+.tsbuildinfo
+tsconfig.tsbuildinfo
+.lovable
+.workspace
+supabase
+ml
+drizzle
+*.log
