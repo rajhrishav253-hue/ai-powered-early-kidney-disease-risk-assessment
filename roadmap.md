@@ -9,5 +9,7 @@
 - [x] Measurements tracking (BP + labs) with trend charts beside saved assessments
 - [x] Light/dark theme toggle
 - [x] Lab report photo upload with AI extraction + review before saving
+- [x] Dashboard trend charts linked to saved assessments (markers, labels, legend verified)
+- [x] Keep users signed in between visits (login persistence)
+- [ ] Deploy to Vercel — waiting on the user's choice (see reply)
 - [ ] Later: AI assistant, education center, export/delete account
-- [ ] Keep users signed in between visits (login persistence)
