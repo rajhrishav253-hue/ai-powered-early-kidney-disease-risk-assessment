@@ -2,8 +2,11 @@ import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { ShieldPlus } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useSession } from "@/hooks/use-session";
+import { supabase } from "@/integrations/supabase/client";
 
 export function SiteHeader() {
+  const { session } = useSession();
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
@@ -18,11 +21,16 @@ export function SiteHeader() {
           <Link to="/disclaimer" className="hover:text-foreground" activeProps={{ className: "text-foreground font-medium" }}>Medical disclaimer</Link>
           <Link to="/privacy" className="hover:text-foreground" activeProps={{ className: "text-foreground font-medium" }}>Privacy</Link>
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
-          <Link to="/how-it-works" className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">
-            Explore
-          </Link>
+          {session ? (
+            <>
+              <Link to="/account" className="rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition hover:bg-muted sm:px-4">My account</Link>
+              <button type="button" onClick={() => void supabase.auth.signOut()} className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 sm:px-4">Sign out</button>
+            </>
+          ) : (
+            <Link to="/auth" className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 sm:px-4">Sign in</Link>
+          )}
         </div>
       </div>
     </header>
