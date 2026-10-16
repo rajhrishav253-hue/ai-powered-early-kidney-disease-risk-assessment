@@ -90,7 +90,7 @@ function Tracker() {
         {pts.length < 1 ? <p className="mt-3 text-sm text-muted-foreground">No values recorded yet.</p> : (
           <div className="mt-3 h-56" role="img" aria-label={`${title} trend chart with ${pts.length} readings`}>
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={pts}>
+              <LineChart data={pts} margin={{ top: 20, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid stroke="var(--border)" strokeDasharray="3 3" />
                 <XAxis dataKey="t" type="number" scale="time" domain={["dataMin", "dataMax"]} tickFormatter={(t) => new Date(t).toLocaleDateString()} stroke="var(--muted-foreground)" fontSize={12} />
                 <YAxis stroke="var(--muted-foreground)" fontSize={12} width={40} />
