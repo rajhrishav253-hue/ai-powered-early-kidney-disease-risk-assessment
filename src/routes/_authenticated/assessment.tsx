@@ -5,8 +5,8 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { PageShell } from "@/components/site";
 import { AssessmentResultView } from "@/components/assessment-result";
-import { predictAssessment, saveAssessment } from "@/lib/assessment.functions";
-import { assessmentSchema, type AssessmentResult } from "@/lib/model/inference";
+import { saveAssessment } from "@/lib/assessment.functions";
+import { assessmentSchema, runAssessment, type AssessmentResult } from "@/lib/model/inference";
 
 export const Route = createFileRoute("/_authenticated/assessment")({
   head: () => ({
@@ -41,7 +41,6 @@ function AssessmentPage() {
   const [result, setResult] = useState<Res | null>(null);
   const [busy, setBusy] = useState(false);
   const [saved, setSaved] = useState(false);
-  const predict = useServerFn(predictAssessment);
   const save = useServerFn(saveAssessment);
 
   const set = (k: keyof Form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
@@ -61,8 +60,8 @@ function AssessmentPage() {
     setErrors(errs);
     if (Object.keys(errs).length) { toast.error("Please fix the highlighted fields."); return; }
     setBusy(true);
-    try { setResult(await predict({ data: input })); }
-    catch { setResult({ status: "error", modelVersion: "unknown" }); }
+    try { setResult(runAssessment(input)); }
+    catch (error) { console.error("Local assessment failed", error); setResult({ status: "error", modelVersion: "unknown" }); }
     finally { setBusy(false); }
   }
 
