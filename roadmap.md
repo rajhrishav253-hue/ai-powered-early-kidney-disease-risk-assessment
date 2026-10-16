@@ -10,3 +10,4 @@
 - [x] Light/dark theme toggle
 - [x] Lab report photo upload with AI extraction + review before saving
 - [ ] Later: AI assistant, education center, export/delete account
+- [ ] Keep users signed in between visits (login persistence)
