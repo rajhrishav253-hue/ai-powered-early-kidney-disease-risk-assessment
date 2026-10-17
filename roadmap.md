@@ -11,5 +11,6 @@
 - [x] Lab report photo upload with AI extraction + review before saving
 - [x] Dashboard trend charts linked to saved assessments (markers, labels, legend verified)
 - [x] Keep users signed in between visits (login persistence)
+- [ ] Fix: Vercel site not reachable — ai-kidneyguard.vercel.app returns "deployment not found"
 - [ ] Deploy to Vercel — waiting on the user's choice (see reply)
 - [ ] Later: AI assistant, education center, export/delete account
