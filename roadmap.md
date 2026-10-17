@@ -11,6 +11,6 @@
 - [x] Lab report photo upload with AI extraction + review before saving
 - [x] Dashboard trend charts linked to saved assessments (markers, labels, legend verified)
 - [x] Keep users signed in between visits (login persistence)
-- [ ] Fix: Vercel site not reachable — ai-kidneyguard.vercel.app returns "deployment not found"
-- [ ] Deploy to Vercel — waiting on the user's choice (see reply)
+- [x] Deploy to Vercel — live at ai-kidneyguard.vercel.app (email/password sign-in verified, signed-in pages verified)
+- [ ] Google sign-in blocked: backend has no Google OAuth credentials (fails with "missing OAuth secret" on preview and Vercel) — needs the user's Google client ID/secret in Cloud Auth settings
 - [ ] Later: AI assistant, education center, export/delete account
