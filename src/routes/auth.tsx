@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
 import { PageShell } from "@/components/site";
 
 const search = z.object({ redirect: z.string().optional() });
@@ -47,11 +48,11 @@ function AuthPage() {
 
   async function google() {
     sessionStorage.setItem("kg_after_login", target);
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: window.location.origin + "/auth" },
-    });
-    if (error) toast.error("Google sign-in didn't work. Please try again.");
+    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/auth" });
+    if (result.error) { toast.error("Google sign-in didn't work. Please try again."); return; }
+    if (result.redirected) return;
+    sessionStorage.removeItem("kg_after_login");
+    navigate({ to: target, replace: true });
   }
 
   useEffect(() => {
